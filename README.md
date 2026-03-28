@@ -1,6 +1,6 @@
 # GitAnalyzer — AI-Powered Code Intelligence
 
-> Understand any GitHub or GitLab repository instantly. Explain PRs, search code in plain English, scan for vulnerabilities, and onboard to new codebases in minutes.
+Understand any GitHub or GitLab repository instantly. Explain PRs, search code in plain English, scan for vulnerabilities, and onboard to new codebases in minutes.
 
 ## Features
 
@@ -11,93 +11,94 @@
 
 ## Tech Stack
 
-| Layer      | Technology                                      |
-|------------|-------------------------------------------------|
-| Frontend   | React 18, TypeScript, Tailwind CSS, Vite        |
-| Backend    | Python 3.11, FastAPI, Celery                    |
-| Database   | PostgreSQL 16 + pgvector extension              |
-| Cache/Queue| Redis 7                                         |
-| AI         | Gemini 1.5 Pro + Gemini Embedding Model         |
-| Security   | Semgrep (SAST) + Snyk (CVE scanning)            |
-| Source     | GitHub API + GitLab API                         |
-| Infra      | Docker + Docker Compose                         |
+| Layer       | Technology                                  |
+|-------------|---------------------------------------------|
+| Frontend    | React 18, TypeScript, Tailwind CSS, Vite    |
+| Backend     | Python 3.11, FastAPI, Celery                |
+| Database    | PostgreSQL 16 + pgvector extension          |
+| Cache/Queue | Redis 7                                     |
+| AI          | Gemini 2.0 Flash Lite + Gemini Embeddings   |
+| Security    | Semgrep (SAST) + Snyk (CVE scanning)        |
+| Source      | GitHub API + GitLab API                     |
+| Infra       | Docker + Docker Compose                     |
+
+## Screenshots
+
+![Dashboard](docs/screenshots/dashboard.png)
+![PR Explainer](docs/screenshots/pr-explainer.png)
+![Code Search](docs/screenshots/code-search.png)
+![Security Scanner](docs/screenshots/scanner.png)
 
 ## Getting Started
 
 ### Prerequisites
+
 - Docker Desktop
 - WSL2 (Ubuntu) on Windows
 - Git
 
 ### Setup
 
-1. Clone the repo:
-```bash
-git clone https://github.com/Shefali21s/GitAnalyzer.git
-cd GitAnalyzer
-```
+Clone the repo:
 
-2. Create your environment file:
-```bash
-cp backend/.env.example backend/.env
-```
+    git clone https://github.com/Shefali21s/GitAnalyzer.git
+    cd GitAnalyzer
 
-3. Fill in your API keys in `backend/.env`:
-```
-GITHUB_TOKEN=ghp_...
-GEMINI_API_KEY=AIza...
-SNYK_TOKEN=...
-```
+Create your environment file:
 
-4. Start everything:
-```bash
-make setup
-```
+    cp backend/.env.example backend/.env
 
-5. Open your browser:
-```
-Frontend  →  http://localhost:5173
-Backend   →  http://localhost:8000
-API Docs  →  http://localhost:8000/docs
-```
+Fill in your API keys in backend/.env:
+
+    GITHUB_TOKEN=ghp_...
+    GEMINI_API_KEY=AIza...
+    SNYK_TOKEN=...
+
+Start everything:
+
+    make setup
+
+Open your browser:
+
+    Frontend  →  http://localhost:5173
+    Backend   →  http://localhost:8000
+    API Docs  →  http://localhost:8000/docs
 
 ## Daily Commands
-```bash
-# Start
-docker compose up -d
 
-# Stop
-docker compose down
+    # Start
+    docker compose up -d
 
-# View logs
-make logs
+    # Stop
+    docker compose down
 
-# Full reset
-make clean && make setup
-```
+    # View logs
+    make logs
+
+    # Full reset
+    make clean && make setup
 
 ## API Keys Required
 
-| Key | Where to get |
-|-----|-------------|
-| GITHUB_TOKEN | github.com → Settings → Developer settings → PAT |
-| GEMINI_API_KEY | aistudio.google.com |
-| SNYK_TOKEN | app.snyk.io → Account settings |
+| Key             | Where to get                                          |
+|-----------------|-------------------------------------------------------|
+| GITHUB_TOKEN    | github.com → Settings → Developer settings → PAT     |
+| GEMINI_API_KEY  | aistudio.google.com                                   |
+| SNYK_TOKEN      | app.snyk.io → Account settings                        |
 
 ## Project Structure
-```
-GitAnalyzer/
-├── backend/
-│   └── app/
-│       ├── api/        # HTTP route handlers
-│       ├── services/   # Gemini, GitHub, GitLab, Semgrep, Snyk
-│       ├── workers/    # Celery async tasks
-│       ├── db/         # Postgres, Redis, pgvector
-│       └── models/     # Pydantic schemas
-└── frontend/
-    └── src/
-        ├── api/        # Axios API calls
-        ├── hooks/      # React Query hooks
-        ├── pages/      # 5 pages
-        └── components/ # Reusable UI components
-```
+
+    GitAnalyzer/
+    backend/
+        app/
+            api/        HTTP route handlers
+            services/   Gemini, GitHub, GitLab, Semgrep, Snyk
+            workers/    Celery async tasks
+            db/         Postgres, Redis, pgvector
+            models/     Pydantic schemas
+    frontend/
+        src/
+            api/        Axios API calls
+            hooks/      React Query hooks
+            pages/      5 pages
+            components/ Reusable UI components
